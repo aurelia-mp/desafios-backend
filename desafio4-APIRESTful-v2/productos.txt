@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Luigi Bosca Sauvignon Blanc",
+    "price": 2400,
+    "thumbnail": "img/item1.jpeg",
+    "id": 1
+  },
+  {
+    "title": "Cafayate Torrontes",
+    "price": 12000,
+    "thumbnail": "img/item2.jpeg",
+    "id": 2
+  },
+  {
+    "title": "Amalaya Torrontés",
+    "price": "3000",
+    "thumbnail": "/upload/item7.jpeg",
+    "id": 3
+  },
+  {
+    "title": "Trumpeter Malbec",
+    "price": "1234",
+    "thumbnail": "/upload/item4.jpeg",
+    "id": 4
+  }
+]
