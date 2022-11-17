@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<header>
+    <%- include('../partials/header')%>
+</header>
+<body">
+    <h1 class="text-center">Todos los vinos en stock</h1>
+    <div class="container d-flex flex-wrap">
+    <% productos.forEach((producto) =>{%>
+        <div class="card w-25">
+            <img src=<%= producto["thumbnail"] %> class="card-img-top" alt=<%= producto["title"] %>>
+            <div class="card-body">
+              <h5 class="card-title"><%= producto["title"] %></h5>
+              <p class="card-text">Precio: AR$<%= producto["price"] %></p>
+            </div>
+          </div>
+    <% })%>
+    </div>  
+</body>
+<footer>
+    <%- include('../partials/footer') %>
+</footer>
+</html>
