@@ -1,13 +1,11 @@
 const Contenedor = require('../contenedores/class')
 const productos = new Contenedor('./productos.txt')
 
-
-
 const getProductos = (req,res) =>{
     productos.getAll()
     .then(resp=>{
         let productos = JSON.parse(resp)
-        res.render('pages/products', {productos: productos})
+        res.render('products', {productos: productos})
     })
     .catch(err=>{
         res.send(err)
