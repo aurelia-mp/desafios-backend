@@ -1,13 +1,13 @@
 [
   {
-    "title": "Luigi Bosca Sauvignon Blanc",
-    "price": 2400,
+    "title": "Luigi Bosca Malbec",
+    "price": 3400,
     "thumbnail": "/upload/item1.jpeg",
     "id": 1
   },
   {
-    "title": "Cafayate Torrontes",
-    "price": 12000,
+    "title": "Luigi Bosca Sauvignon Blanc",
+    "price": 3000,
     "thumbnail": "/upload/item2.jpeg",
     "id": 2
   },
@@ -18,45 +18,27 @@
     "id": 3
   },
   {
-    "title": "Trumpeter Malbec",
+    "title": "Luigi Bosca Cabernet Sauvignon",
     "price": "4500",
     "thumbnail": "/upload/item4.jpeg",
     "id": 4
   },
   {
-    "title": "Trumpeter Cabernet",
-    "price": "4600",
-    "thumbnail": "/upload/item5.jpeg",
+    "title": "Navarro Correas Espumante",
+    "price": "4000",
+    "thumbnail": "/upload/item3.jpeg",
     "id": 5
   },
   {
-    "title": "Trumpeter Cabernet",
+    "title": "Alma Negra Espumante",
     "price": "4600",
-    "thumbnail": "/upload/item5.jpeg",
+    "thumbnail": "/upload/item6.jpeg",
     "id": 6
   },
   {
-    "title": "Trumpeter Cabernet",
-    "price": "4600",
+    "title": "Trumpeter Malbec",
+    "price": "2000",
     "thumbnail": "/upload/item5.jpeg",
     "id": 7
-  },
-  {
-    "title": "vino nuevo",
-    "price": "1500",
-    "thumbnail": "/upload/item6.jpeg",
-    "id": 8
-  },
-  {
-    "title": "No compre este vino esta envenenado",
-    "price": "1999900",
-    "thumbnail": "/upload/demo-screenshot.png",
-    "id": 9
-  },
-  {
-    "title": "Trumpeter Malbec",
-    "price": "235",
-    "thumbnail": "/upload/item5.jpeg",
-    "id": 10
   }
 ]
