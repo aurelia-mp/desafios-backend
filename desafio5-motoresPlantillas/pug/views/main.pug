@@ -1,0 +1,17 @@
+extends layout 
+
+block content
+    h3(class="pb-4") Agregar un producto
+        form(action="/productos" method="POST" enctype="multipart/form-data")
+            div(class="mb-3")
+                label(for="nombre" class="form-label") Nombre
+                input#nombre.form-control(type="text" aria-describedby="nombre" name="nombre")
+
+            div(class="mb-3")
+                label(for="precio" class="form-label") Precio
+                input#precio(type="number" class="form-control" name="precio")
+
+            div(class="mb-3")
+                label(for="upload" class="form-label") Imagen
+                input#upload(type="file" class="form-control"  name="file")
+            button.btn.btn-primary(type="submit") Enviar

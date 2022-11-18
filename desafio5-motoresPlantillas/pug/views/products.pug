@@ -1,0 +1,12 @@
+extends layout 
+
+block content 
+
+    h1.text-center.mb-5 Todos los vinos en stock 
+    div.container.d-flex.flex-wrap
+        each producto in productos
+            div.card.w-25
+                img.card-img-top(src=producto.thumbnail alt=producto.price)
+                div.card-body
+                    h5.card-title #{producto.title}
+                    p.card-text Precio: #{producto.price}
