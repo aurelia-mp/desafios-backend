@@ -17,6 +17,6 @@ router.get('', getProductos)
 router.get('/:id', getProductoById)
 router.post('', upload.single('file'), crearProducto)
 router.put('/:id', modificarProductoById)
-router.delete('', borrarProductoById)
+router.delete('/:id', borrarProductoById)
 
 module.exports = router

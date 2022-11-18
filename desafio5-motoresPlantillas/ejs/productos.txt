@@ -1,7 +1,7 @@
 [
   {
     "title": "Luigi Bosca Malbec",
-    "price": 3400,
+    "price": 4100,
     "thumbnail": "/upload/item1.jpeg",
     "id": 1
   },
@@ -22,12 +22,6 @@
     "price": "4500",
     "thumbnail": "/upload/item4.jpeg",
     "id": 4
-  },
-  {
-    "title": "Navarro Correas Espumante",
-    "price": "4000",
-    "thumbnail": "/upload/item3.jpeg",
-    "id": 5
   },
   {
     "title": "Alma Negra Espumante",

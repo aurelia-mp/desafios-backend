@@ -42,19 +42,24 @@ class Contenedor {
         catch(err){console.log(err)}
     }
 
-    async udpateById(number, object){
+    async udpateById(id, cambios){
         try{
             const leer = await fs.readFile(this.path, 'utf-8')
             const dataFormateada = JSON.parse(leer)
-            const index = dataFormateada.findIndex((prod) => prod.id===number)
-            if (index != -1){
-                for (let key in object){
-                    (object[key] != null) && (dataFormateada[index][key] = object[key])
-                }
-                    await fs.writeFile(this.path, JSON.stringify(dataFormateada, null, 2))
-                return            
+            const index = dataFormateada.findIndex((prod) => prod.id===id)       
+            if(index===-1){
+                return null
             }
-            else return null
+
+            let productoAActualizar = {
+                ...dataFormateada[index],   
+                ...cambios
+            }
+
+            dataFormateada[index] = productoAActualizar
+            await fs.writeFile(this.path, JSON.stringify(dataFormateada, null, 2))
+            return            
+            
         }
         catch(err){console.log(err)}
     }
@@ -73,13 +78,15 @@ class Contenedor {
     async deleteById(number){
         try{
             const leer = await fs.readFile(this.path, 'utf-8')
-            const dataFormateada = JSON.parse(leer)
-            const productosFiltrados = dataFormateada.filter((prod) => prod.id !== number)
-            if (productosFiltrados.length === dataFormateada.length) {
+            let dataFormateada = JSON.parse(leer)
+            const indexABorrar = dataFormateada.findIndex((prod) => prod.id === number)
+            if (indexABorrar === -1){
                 return null
-            } 
-            await fs.writeFile(this.path, JSON.stringify(productosFiltrados, null, 2))
-            return productosFiltrados
+            }
+
+            dataFormateada.splice(indexABorrar,1)
+            await fs.writeFile(this.path, JSON.stringify(dataFormateada, null, 2))
+            return dataFormateada
         }
         catch(err){console.log(err)}
     }

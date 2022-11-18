@@ -38,12 +38,8 @@ const borrarProductoById = (req,res) =>{
 
 const modificarProductoById = (req,res) =>{
     let id = parseInt(req.params.id)
-    let prodActualizado = {
-        title : req.body.title,
-        price: req.body.price,
-        thumbnail: req.body.thumbnail
-    }  
-    productos.udpateById(id, prodActualizado)
+    let cambios = req.body
+    productos.udpateById(id, cambios)
     .then(resp=>{
         res.send(`Producto ${id} actualizado`)
     })
