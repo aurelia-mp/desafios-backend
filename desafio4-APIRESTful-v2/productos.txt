@@ -19,7 +19,7 @@
   },
   {
     "title": "Trumpeter Malbec",
-    "price": "1234",
+    "price": 4100,
     "thumbnail": "/upload/item4.jpeg",
     "id": 4
   }

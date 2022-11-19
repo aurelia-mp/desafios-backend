@@ -20,41 +20,49 @@ class Contenedor {
         }
     }
 
-    async getById(number){
+    async getById(id){
         try{
             const leer = await fs.readFile(this.path, 'utf-8')
             const dataFormateada = JSON.parse(leer)
-            const productoFiltrado = dataFormateada.filter((prod) => prod.id===number)
-            return (productoFiltrado.length !== 0) ? JSON.stringify(productoFiltrado, null, 2) 
-                    : null
+            const productoFiltrado = dataFormateada.filter((prod) => prod.id===id)
+            return (productoFiltrado.length !== 0) ? 
+                JSON.stringify(productoFiltrado, null, 2) 
+                : 
+                null
         }
         catch(err){console.log(err)}
     }
 
-    async getIndexById(number){
-        try{
-            const leer = await fs.readFile(this.path, 'utf-8')
-            const dataFormateada = JSON.parse(leer)
-            const index = dataFormateada.findIndex((prod) => prod.id===number)
-            if (index != -1) return index
-            else return null
-        }
-        catch(err){console.log(err)}
-    }
+    // async getIndexById(number){
+    //     try{
+    //         const leer = await fs.readFile(this.path, 'utf-8')
+    //         const dataFormateada = JSON.parse(leer)
+    //         const index = dataFormateada.findIndex((prod) => prod.id===number)
+    //         return (index != -1) ? 
+    //             index
+    //             :
+    //             null
+    //     }
+    //     catch(err){console.log(err)}
+    // }
 
-    async udpateById(number, object){
+    async udpateById(id, cambios){
         try{
             const leer = await fs.readFile(this.path, 'utf-8')
             const dataFormateada = JSON.parse(leer)
-            const index = dataFormateada.findIndex((prod) => prod.id===number)
-            if (index != -1){
-                for (let key in object){
-                    (object[key] != null) && (dataFormateada[index][key] = object[key])
-                }
-                    await fs.writeFile(this.path, JSON.stringify(dataFormateada, null, 2))
-                return            
+            const index = dataFormateada.findIndex((prod) => prod.id===id)       
+            if(index===-1){
+                return null
             }
-            else return null
+
+            let productoAActualizar = {
+                ...dataFormateada[index],   
+                ...cambios
+            }
+
+            dataFormateada[index] = productoAActualizar
+            await fs.writeFile(this.path, JSON.stringify(dataFormateada, null, 2))
+            return       
         }
         catch(err){console.log(err)}
     }
@@ -67,7 +75,6 @@ class Contenedor {
         catch(error){
             console.log("error al leer los productos")
         }
-
     }
     
     async deleteById(number){
@@ -79,7 +86,7 @@ class Contenedor {
                 return null
             } 
             await fs.writeFile(this.path, JSON.stringify(productosFiltrados, null, 2))
-            return productosFiltrados
+            return
         }
         catch(err){console.log(err)}
     }

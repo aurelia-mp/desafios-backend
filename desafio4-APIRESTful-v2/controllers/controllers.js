@@ -1,12 +1,10 @@
 const Contenedor = require('../contenedores/class')
 const productos = new Contenedor('./productos.txt')
 
-
-
 const getProductos = (req,res) =>{
     productos.getAll()
     .then(resp=>{
-        res.send(resp)
+        res.status(200).send(resp)
     })
     .catch(err=>{
         res.send(err)
@@ -18,7 +16,7 @@ const getProductoById = (req,res) =>{
         productos.getById(id)
         .then(resp => 
             resp ? 
-                res.send(resp)
+                res.status(200).send(resp)
                 :
                 res.send({error: 'producto no encontrado'}) 
             )
@@ -28,21 +26,17 @@ const borrarProductoById = (req,res) =>{
     let id=parseInt(req.params.id)
     productos.deleteById(id)
     .then(resp=>
-            resp ?
-                (res.send(`Producto ${id} borrado`))
-                :
-                res.send({error: 'producto no encontrado'}) 
-        )
+        resp ?
+            (res.send(`Producto ${id} borrado`))
+            :
+            res.send({error: 'producto no encontrado'}) 
+    )
 }
 
 const modificarProductoById = (req,res) =>{
     let id = parseInt(req.params.id)
-    let prodActualizado = {
-        title : req.body.title,
-        price: req.body.price,
-        thumbnail: req.body.thumbnail
-    }  
-    productos.udpateById(id, prodActualizado)
+    let cambios=req.body
+    productos.udpateById(id, cambios)
     .then(resp=>{
         res.send(`Producto ${id} actualizado`)
     })
@@ -63,8 +57,6 @@ const crearProducto = (req,res,next) =>{
         thumbnail: `/upload/${file.originalname}`
     }
 
-    console.log(req.body.nombre)
-    console.log(req.body.precio)
     if(!req.body.nombre || !req.body.precio) {
         const error = new Error('Faltan campos obligarios')
         error.httpStatusCode = 400
@@ -73,7 +65,6 @@ const crearProducto = (req,res,next) =>{
     productos.save(producto)
 
     .then(resp =>{
-        console.log('Producto guardado')
         productos.getById(resp)
         .then(resp =>{
             res.json({
