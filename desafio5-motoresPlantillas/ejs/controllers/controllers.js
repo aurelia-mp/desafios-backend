@@ -17,12 +17,12 @@ const getProductos = (req,res) =>{
 const getProductoById = (req,res) =>{
         let id = parseInt(req.params.id)
         productos.getById(id)
-        .then(resp => 
+        .then(resp =>
             resp ? 
-                res.send(resp)
+                res.render('pages/products', {productos: JSON.parse(resp)})
                 :
                 res.send({error: 'producto no encontrado'}) 
-            )
+        )
 }
 
 const borrarProductoById = (req,res) =>{
@@ -65,13 +65,15 @@ const crearProducto = (req,res,next) =>{
         error.httpStatusCode = 400
         return next(error)
     }
-    productos.save(producto)
+   productos.save(producto)
 
     .then(resp =>{
         console.log('Producto guardado')
+        let id = resp
+        console.log(id)
         productos.getById(resp)
         .then(resp =>{
-            res.redirect('../../')
+            res.render('./pages/index', {productoGuardado : true, id: id})
         })
     })
 }

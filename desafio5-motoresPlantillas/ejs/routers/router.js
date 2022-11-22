@@ -10,9 +10,6 @@ const {
     borrarProductoById
 } = require('../controllers/controllers.js')
 
-// router.use(express.json())
-// router.use(express.urlencoded({extended: true}))
-
 router.get('', getProductos)
 router.get('/:id', getProductoById)
 router.post('', upload.single('file'), crearProducto)

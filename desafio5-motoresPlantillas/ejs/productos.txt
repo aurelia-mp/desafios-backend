@@ -24,6 +24,12 @@
     "id": 4
   },
   {
+    "title": "Navarro Correas Espumante",
+    "price": "4000",
+    "thumbnail": "/upload/item3.jpeg",
+    "id": 5
+  },
+  {
     "title": "Alma Negra Espumante",
     "price": "4600",
     "thumbnail": "/upload/item6.jpeg",

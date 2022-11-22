@@ -16,7 +16,8 @@ app.set('view engine', 'ejs')
 
 // Ruta raíz
 app.get('', (req, res)=>{
-    res.render('pages/index')
+    let productoGuardado = false
+    res.render('pages/index', {productoGuardado})
 })
 
 app.listen(PORT, () =>{
