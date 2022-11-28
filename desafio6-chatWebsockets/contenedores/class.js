@@ -7,11 +7,13 @@ class Contenedor {
 
     async save(objeto){
         try{
-            const leer = await fs.readFile(this.path, 'utf-8')
-            const dataFormateada = JSON.parse(leer)
+            const dataFormateada= JSON.parse(await fs.readFile(this.path, 'utf-8'))
             let id = 1
             dataFormateada.length != 0 && (id=dataFormateada[dataFormateada.length-1].id + 1)
-            dataFormateada.push({...objeto, id: id})
+            dataFormateada.push(
+                {...objeto,
+                id: id
+                })
             await fs.writeFile(this.path, JSON.stringify(dataFormateada, null, 2))
             return id
         }
@@ -22,10 +24,10 @@ class Contenedor {
 
     async getById(number){
         try{
-            const leer = await fs.readFile(this.path, 'utf-8')
-            const dataFormateada = JSON.parse(leer)
-            const productoFiltrado = dataFormateada.filter((prod) => prod.id===number)
-            return (productoFiltrado.length !== 0) ? JSON.stringify(productoFiltrado, null, 2) 
+            const dataFormateada= JSON.parse(await fs.readFile(this.path, 'utf-8'))
+            // const dataFormateada = JSON.parse(leer)
+            const elementoFiltrado = dataFormateada.filter((elem) => elem.id===number)
+            return (elementoFiltrado.length !== 0) ? JSON.stringify(elementoFiltrado, null, 2) 
                     : null
         }
         catch(err){console.log(err)}
@@ -33,9 +35,9 @@ class Contenedor {
 
     async getIndexById(number){
         try{
-            const leer = await fs.readFile(this.path, 'utf-8')
-            const dataFormateada = JSON.parse(leer)
-            const index = dataFormateada.findIndex((prod) => prod.id===number)
+            const dataFormateada= JSON.parse(await fs.readFile(this.path, 'utf-8'))
+            // const dataFormateada = JSON.parse(leer)
+            const index = dataFormateada.findIndex((elem) => elem.id===number)
             if (index != -1) return index
             else return null
         }
@@ -44,19 +46,19 @@ class Contenedor {
 
     async udpateById(id, cambios){
         try{
-            const leer = await fs.readFile(this.path, 'utf-8')
-            const dataFormateada = JSON.parse(leer)
-            const index = dataFormateada.findIndex((prod) => prod.id===id)       
+            const dataFormateada= JSON.parse(await fs.readFile(this.path, 'utf-8'))
+            // const dataFormateada = JSON.parse(leer)
+            const index = dataFormateada.findIndex((elem) => elem.id===id)       
             if(index===-1){
                 return null
             }
 
-            let productoAActualizar = {
+            let elementoActualizado = {
                 ...dataFormateada[index],   
                 ...cambios
             }
 
-            dataFormateada[index] = productoAActualizar
+            dataFormateada[index] = elementoActualizado
             await fs.writeFile(this.path, JSON.stringify(dataFormateada, null, 2))
             return            
             
@@ -66,11 +68,11 @@ class Contenedor {
 
     async getAll(){
         try{
-            const leer = await fs.readFile(this.path, 'utf-8')
-            return leer
+            const dataFormateada= JSON.parse(await fs.readFile(this.path, 'utf-8'))
+            return dataFormateada
         }
         catch(error){
-            console.log("error al leer los productos")
+            console.log("error de lectura")
         }
 
     }
@@ -79,7 +81,7 @@ class Contenedor {
         try{
             const leer = await fs.readFile(this.path, 'utf-8')
             let dataFormateada = JSON.parse(leer)
-            const indexABorrar = dataFormateada.findIndex((prod) => prod.id === number)
+            const indexABorrar = dataFormateada.findIndex((elem) => elem.id === number)
             if (indexABorrar === -1){
                 return null
             }
@@ -97,7 +99,7 @@ class Contenedor {
             return
         }
         catch(error){
-            console.log('Error al borrar los productos')
+            console.log('Error al borrar')
         }
     }
 }

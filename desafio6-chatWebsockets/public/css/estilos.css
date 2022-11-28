@@ -14,3 +14,15 @@ label {
 .smallImg{
     width: 75px
 }
+
+.email{
+    color: blue
+}
+
+.fecha{
+    color: brown
+}
+
+.mensaje{
+    color: green
+}

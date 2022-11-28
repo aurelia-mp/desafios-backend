@@ -13,62 +13,26 @@
   },
   {
     "email": "a@a.com",
-    "mensaje": "",
+    "mensaje": "Cómo están?",
     "fecha": "28/11/2022 08:31:53",
     "id": 3
   },
   {
-    "email": "a@a.com",
-    "mensaje": "weq",
-    "fecha": "28/11/2022 08:31:56",
+    "email": "usuario2@gmail.com",
+    "mensaje": "Hola! Buen día!",
+    "fecha": "28/11/2022 09:58:39",
     "id": 4
   },
   {
-    "email": "a@a.com",
-    "mensaje": "Hola",
-    "fecha": "28/11/2022 08:33:50",
+    "email": "usuario3@gmail.com",
+    "mensaje": "Hoy es lunes",
+    "fecha": "28/11/2022 09:59:14",
     "id": 5
   },
   {
-    "email": "a@a.com",
-    "mensaje": "hola!!!!!!!!!!",
-    "fecha": "28/11/2022 08:43:33",
+    "email": "usuario2@gmail.com",
+    "mensaje": "Este chat funciona bien",
+    "fecha": "28/11/2022 10:16:20",
     "id": 6
-  },
-  {
-    "email": "a@a.com",
-    "mensaje": "aloha!",
-    "fecha": "28/11/2022 08:44:39",
-    "id": 7
-  },
-  {
-    "email": "a@a.com",
-    "mensaje": "hello",
-    "fecha": "28/11/2022 08:45:20",
-    "id": 8
-  },
-  {
-    "email": "a@a.com",
-    "mensaje": "Hola a todos",
-    "fecha": "28/11/2022 08:46:09",
-    "id": 9
-  },
-  {
-    "email": "a@a.com",
-    "mensaje": "Hola _:)",
-    "fecha": "28/11/2022 08:46:37",
-    "id": 10
-  },
-  {
-    "email": "a@a.com",
-    "mensaje": "hola!!!!!",
-    "fecha": "28/11/2022 08:47:37",
-    "id": 11
-  },
-  {
-    "email": "a@a.com",
-    "mensaje": "Todo bien?=",
-    "fecha": "28/11/2022 08:48:04",
-    "id": 12
   }
 ]

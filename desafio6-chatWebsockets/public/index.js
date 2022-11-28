@@ -6,7 +6,7 @@ formAgregarProducto.addEventListener('submit', e => {
     //Armar objeto producto y emitir mensaje a evento update
     let nombre = document.getElementById('nombre').value
     let precio = document.getElementById('precio').value
-    let foto=document.getElementById('foto').value 
+    let foto = document.getElementById('foto').value 
 
     let nuevoProducto = {
         title: nombre,
@@ -26,6 +26,7 @@ function makeHtmlTable(productos) {
             return html
         })
 }
+
 
 socket.on('productos', productos => {
     //generar el html y colocarlo en el tag productos llamando a la funcion makeHtmlTable
@@ -62,11 +63,11 @@ socket.on('mensajes', mensajes => {
 
 function makeHtmlList(mensajes) {
     //Armar nuestro html para mostrar los mensajes como lo hicimos en clase
-    let arrayMensajes = JSON.parse(mensajes)
-    let html = arrayMensajes.map((mje) =>{
+    // let arrayMensajes = JSON.parse(mensajes)
+    let html = mensajes.map((mje) =>{
         return (`
         <p>
-        <strong>${mje.email}</strong>: <em>${mje.mensaje}</em>
+        <strong class="email">${mje.email}</strong> [<span class="fecha">${mje.fecha}</span>]: <em class="mensaje">${mje.mensaje}</em>
         </p>`)
     }).join('')
     return html

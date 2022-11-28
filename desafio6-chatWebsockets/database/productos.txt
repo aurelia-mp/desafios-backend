@@ -34,17 +34,5 @@
     "price": "4600",
     "thumbnail": "/upload/item6.jpeg",
     "id": 6
-  },
-  {
-    "title": "Nuevo",
-    "price": "2360",
-    "thumbnail": "/upload/item4.jpeg",
-    "id": 7
-  },
-  {
-    "title": "Mas",
-    "price": "5000",
-    "thumbnail": "/upload/item5.jpeg",
-    "id": 8
   }
 ]

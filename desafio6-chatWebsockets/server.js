@@ -17,28 +17,19 @@ app.use('/', express.static(__dirname + '/public'))
 
 const Contenedor = require('./contenedores/class')
 const productos = new Contenedor('./database/productos.txt')
-
-const ContenedorMensajes = require('./contenedores/mensajes.js')
-// const mensajes = new ContenedorMensajes('./database/mensajes.json')
-
 const mensajes = new Contenedor('./database/mensajes.json')
-// console.log(mensajes.listarAll())
-// let mje = {
-//     email: "aurelia.monnier@gmail.com",
-//     fecha: "01/01/2012",
-//     mensaje: "hola"
-// }
-
-// mensajes.guardar(mje)
 
 // Implementación de websocket
 io.on('connection', socket =>{
-    console.log('usuario conectado')
+    // Al conectarse un nuevo usuario, aparece el historial de mensajes anteriores
+    mensajes.getAll()
+    .then((mjes) =>{
+        socket.emit('mensajes', mjes)
+    })
     // Recibo un producto nuevo
     socket.on('nuevoProducto', nuevoProducto =>{
         productos.save(nuevoProducto)
-        .then((guardado) => {
-            console.log('producto guardado')
+        .then((res) => {
             productos.getAll()
             .then((productos) =>{
                 socket.emit('productos', productos)
@@ -49,22 +40,17 @@ io.on('connection', socket =>{
     // Recibo un mensaje nuevo
     socket.on('nuevoMensaje', mje =>{
         let fecha = new Date().toLocaleString()
-        console.log(fecha)
         let mensaje = {
             ...mje,
             "fecha": fecha
         }
         mensajes.save(mensaje)
         .then((res) => {
-            let listaMensajes = mensajes.getAll()
+            mensajes.getAll()
             .then((lista =>{
                 io.sockets.emit('mensajes', lista)
             }))
         })
-        
-        // mensajes.guardar(mensaje)
-        // let listaMensajes = mensajes.listarAll()
-        
     })
 })
 
