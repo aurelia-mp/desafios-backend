@@ -56,7 +56,6 @@ formPublicarMensaje.addEventListener('submit', e => {
 })
 
 socket.on('mensajes', mensajes => {
-    console.log(mensajes);
     const html = makeHtmlList(mensajes)
     document.getElementById('mensajes').innerHTML = html;
 })
@@ -64,7 +63,6 @@ socket.on('mensajes', mensajes => {
 function makeHtmlList(mensajes) {
     //Armar nuestro html para mostrar los mensajes como lo hicimos en clase
     let arrayMensajes = JSON.parse(mensajes)
-    console.log(arrayMensajes)
     let html = arrayMensajes.map((mje) =>{
         return (`
         <p>

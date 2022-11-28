@@ -19,8 +19,9 @@ const Contenedor = require('./contenedores/class')
 const productos = new Contenedor('./database/productos.txt')
 
 const ContenedorMensajes = require('./contenedores/mensajes.js')
-const mensajes = new ContenedorMensajes('./database/mensajes.json')
+// const mensajes = new ContenedorMensajes('./database/mensajes.json')
 
+const mensajes = new Contenedor('./database/mensajes.json')
 // console.log(mensajes.listarAll())
 // let mje = {
 //     email: "aurelia.monnier@gmail.com",
@@ -53,9 +54,17 @@ io.on('connection', socket =>{
             ...mje,
             "fecha": fecha
         }
-        mensajes.guardar(mensaje)
-        let listaMensajes = mensajes.listarAll()
-        io.sockets.emit('mensajes', listaMensajes)
+        mensajes.save(mensaje)
+        .then((res) => {
+            let listaMensajes = mensajes.getAll()
+            .then((lista =>{
+                io.sockets.emit('mensajes', lista)
+            }))
+        })
+        
+        // mensajes.guardar(mensaje)
+        // let listaMensajes = mensajes.listarAll()
+        
     })
 })
 
