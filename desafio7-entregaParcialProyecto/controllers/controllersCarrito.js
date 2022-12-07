@@ -28,9 +28,13 @@ const getCarrito = (req,res) => {
         let prods = carrito[0]["items"]
         res.json({"Productos en el carrito:" : prods})
     })
+    .catch((err) =>{
+        res.send("El carrito requerido no existe")
+    })
 }
 
 const agregarItemAlCarrito  = (req,res)  =>{
+    // Carga un producto a un carrito con el id de producto
     let id = parseInt(req.params.id)
     let id_prod =parseInt(req.params.id_prod)
     productos.getById(id_prod)
@@ -43,6 +47,9 @@ const agregarItemAlCarrito  = (req,res)  =>{
             carritos.udpateById(id, {"items": prods, cart_timestamp})
             res.send("Carrito actualizado")
         })
+        .catch((err) =>{
+            res.send("El carrito requerido no existe")
+        })
     })
 }
 
@@ -52,18 +59,28 @@ const agregarVariosItemsAlCarrito  = (req, res) =>{
     let id = parseInt(req.params.id)
     let cart_timestamp = Date.now()
     carritos.udpateById(id, {"items": prods, cart_timestamp})
-    res.send("Productos agregados al carrito")
+    .then((respuesta) =>{
+        console.log(respuesta)
+        if(respuesta === null){
+            res.send(`No se encontró ningún carrito con el id ${id}`)
+
+        }
+        else{
+            res.send(`Productos agregados al carrito ${id}`)
+        }
+    })
 }
 
 const borrarItemDelCarrito = (req,res) =>{
     let id = parseInt(req.params.id)
-    let id_prod =parseInt(req.params.id_prod)
+    let id_prod = parseInt(req.params.id_prod)
     carritos.getById(id)
     .then((carrito)=>{
         let prods= carrito[0]["items"]
         let index = prods.findIndex((el) => el.id === id_prod)
         if (index === -1){
             res.send(`Error: Este producto no se encuentra en el carrito`)
+            return
         }
         prods.splice(index,1)
         let cart_timestamp = Date.now()

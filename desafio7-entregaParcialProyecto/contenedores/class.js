@@ -47,24 +47,22 @@ class Contenedor {
     async udpateById(id, cambios){
         try{
             const dataFormateada= JSON.parse(await fs.readFile(this.path, 'utf-8'))
-            const index = dataFormateada.findIndex((elem) => elem.id===id)       
+            const index = dataFormateada.findIndex((elem) => elem.id===id)     
+            
+            console.log(index)
+
             if(index===-1){
                 return null
             }
-
-            console.log(index)
 
             let elementoActualizado = {
                 ...dataFormateada[index],   
                 ...cambios
             }
 
-            console.log(elementoActualizado)
-
             dataFormateada[index] = elementoActualizado
             await fs.writeFile(this.path, JSON.stringify(dataFormateada, null, 2))
-            return            
-            
+            return          
         }
         catch(err){console.log(err)}
     }

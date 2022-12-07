@@ -2,29 +2,13 @@
   {
     "items": [
       {
-        "nombre": "Vinito",
-        "descripcion": "Nueva prueba",
-        "codigo": "4500",
-        "precio": "3000",
-        "stock": "40",
-        "thumbnail": "/upload/celular.jpeg",
-        "timestamp": 1669935183029,
-        "id": 5
-      },
-      {
-        "nombre": "Prueba",
-        "descripcion": "Nueva prueba",
-        "codigo": "458900",
-        "precio": "3000",
-        "stock": "40",
-        "thumbnail": "/upload/celular.jpeg",
-        "timestamp": 1669935183029,
-        "id": 200
-      },
-      {
-        "title": "Luigi Bosca Malbec",
-        "price": 3400,
+        "nombre": "Luigi Bosca Malbec",
+        "descripcion": "Vino tinto. Potencial de guarda: 5 años",
+        "codigo": "45789",
+        "precio": "4000",
+        "stock": "50",
         "thumbnail": "/upload/item1.jpeg",
+        "timestamp": 1670155337055,
         "id": 1
       },
       {
@@ -36,14 +20,35 @@
         "thumbnail": "/upload/item2.jpeg",
         "timestamp": 1670155820849,
         "id": 2
+      },
+      {
+        "nombre": "Luigi Bosca Malbec",
+        "descripcion": "Vino tinto clásico argentino",
+        "codigo": "477933",
+        "precio": "5000",
+        "stock": "100",
+        "thumbnail": "/upload/item4.jpeg",
+        "timestamp": 1670157321174,
+        "id": 4
       }
     ],
-    "cart_timestamp": 1670413989796,
+    "cart_timestamp": 1670450954330,
     "id": 1
   },
   {
-    "items": [],
-    "cart_timestamp": 1670158474282,
+    "items": [
+      {
+        "nombre": "Luigi Bosca Malbec",
+        "descripcion": "Vino tinto clásico argentino",
+        "codigo": "477933",
+        "precio": "5000",
+        "stock": "100",
+        "thumbnail": "/upload/item4.jpeg",
+        "timestamp": 1670157321174,
+        "id": 4
+      }
+    ],
+    "cart_timestamp": 1670451132481,
     "id": 2
   },
   {
@@ -63,29 +68,8 @@
     "id": 4
   },
   {
-    "items": [
-      {
-        "nombre": "Vinito",
-        "descripcion": "Nueva prueba",
-        "codigo": "4500",
-        "precio": "3000",
-        "stock": "40",
-        "thumbnail": "/upload/celular.jpeg",
-        "timestamp": 1669935183029,
-        "id": 5
-      },
-      {
-        "nombre": "Prueba",
-        "descripcion": "Nueva prueba",
-        "codigo": "458900",
-        "precio": "3000",
-        "stock": "40",
-        "thumbnail": "/upload/celular.jpeg",
-        "timestamp": 1669935183029,
-        "id": 200
-      }
-    ],
-    "cart_timestamp": 1670413324967,
+    "items": [],
+    "cart_timestamp": 1670450524129,
     "id": 5
   }
 ]
