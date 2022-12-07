@@ -25,9 +25,10 @@ class Contenedor {
     async getById(number){
         try{
             const dataFormateada= JSON.parse(await fs.readFile(this.path, 'utf-8'))
-            // const dataFormateada = JSON.parse(leer)
             const elementoFiltrado = dataFormateada.filter((elem) => elem.id===number)
-            return (elementoFiltrado.length !== 0) ? JSON.stringify(elementoFiltrado, null, 2) 
+            // return (elementoFiltrado.length !== 0) ? JSON.stringify(elementoFiltrado, null, 2) 
+            //         : null
+            return (elementoFiltrado.length !== 0) ? elementoFiltrado 
                     : null
         }
         catch(err){console.log(err)}
@@ -36,7 +37,6 @@ class Contenedor {
     async getIndexById(number){
         try{
             const dataFormateada= JSON.parse(await fs.readFile(this.path, 'utf-8'))
-            // const dataFormateada = JSON.parse(leer)
             const index = dataFormateada.findIndex((elem) => elem.id===number)
             if (index != -1) return index
             else return null
@@ -47,16 +47,19 @@ class Contenedor {
     async udpateById(id, cambios){
         try{
             const dataFormateada= JSON.parse(await fs.readFile(this.path, 'utf-8'))
-            // const dataFormateada = JSON.parse(leer)
             const index = dataFormateada.findIndex((elem) => elem.id===id)       
             if(index===-1){
                 return null
             }
 
+            console.log(index)
+
             let elementoActualizado = {
                 ...dataFormateada[index],   
                 ...cambios
             }
+
+            console.log(elementoActualizado)
 
             dataFormateada[index] = elementoActualizado
             await fs.writeFile(this.path, JSON.stringify(dataFormateada, null, 2))
@@ -79,8 +82,7 @@ class Contenedor {
     
     async deleteById(number){
         try{
-            const leer = await fs.readFile(this.path, 'utf-8')
-            let dataFormateada = JSON.parse(leer)
+            let dataFormateada = JSON.parse(await fs.readFile(this.path, 'utf-8'))
             const indexABorrar = dataFormateada.findIndex((elem) => elem.id === number)
             if (indexABorrar === -1){
                 return null

@@ -1,11 +1,9 @@
 const Contenedor = require('../contenedores/class')
-const productos = new Contenedor('./productos.txt')
-
+const productos = new Contenedor('./db/productos.json')
 
 const getProductos = (req,res) =>{
     productos.getAll()
     .then(productos=>{
-        // let productos = JSON.parse(resp)
         res.render('products', {productos: productos})
     })
     .catch(err=>{
@@ -37,12 +35,11 @@ const borrarProductoById = (req,res) =>{
 
 const modificarProductoById = (req,res) =>{
     let id = parseInt(req.params.id)
-    let prodActualizado = {
-        title : req.body.title,
-        price: req.body.price,
-        thumbnail: req.body.thumbnail
-    }  
-    productos.udpateById(id, prodActualizado)
+    let timestamp= Date.now()
+
+    let cambios = req.body
+    productos.udpateById(id, cambios)
+
     .then(resp=>{
         res.send(`Producto ${id} actualizado`)
     })
@@ -57,10 +54,12 @@ const crearProducto = (req,res,next) =>{
         return next(error)
     }
     
+    const timestamp = Date.now()
+
     let producto = {
-        title: req.body.nombre,
-        price: req.body.precio,
-        thumbnail: `/upload/${file.originalname}`
+        ...req.body,
+        thumbnail: `/upload/${file.originalname}`,
+        timestamp: timestamp
     }
 
     if(!req.body.nombre || !req.body.precio) {
@@ -72,11 +71,11 @@ const crearProducto = (req,res,next) =>{
 
     .then(resp =>{
         console.log('Producto guardado')
-        .then(resp =>{
-        //     // PROBLEMA CON ESTE REDIRECT - REEMPLAZAR POR EL RENDERIZADO DE LA LISTA DE PRODUCTOS
-            res.redirect('../../')
-            })
+        productos.getAll()
+        .then((listaProductos) =>{
+            res.render('main', {listaProductos})
         })
+    })
 }
 
 module.exports = {
@@ -84,6 +83,5 @@ module.exports = {
     getProductoById,
     modificarProductoById,
     crearProducto,
-    borrarProductoById,
-    productos
+    borrarProductoById
 } 

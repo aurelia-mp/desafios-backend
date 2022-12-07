@@ -1,5 +1,5 @@
 const express = require('express')
-const router = express.Router()
+const routerProductos = express.Router()
 const upload = require('../multer')
 
 const {
@@ -8,15 +8,38 @@ const {
     modificarProductoById,
     crearProducto,
     borrarProductoById
-} = require('../controllers/controllers.js')
+} = require('../controllers/controllersProductos.js')
 
-// router.use(express.json())
-// router.use(express.urlencoded({extended: true}))
+//  Middleware - Acceso solo para Administradores   
+const esAdmin  = true
 
-router.get('', getProductos)
-router.get('/:id', getProductoById)
-router.post('', upload.single('file'), crearProducto)
-router.put('/:id', modificarProductoById)
-router.delete('/:id', borrarProductoById)
+const enviarErrorAuth = (url, metodo)  =>{
+    const error ={
+        error: -1
+    }
+    if(url && metodo){
+        error.descripcion = `No tiene las credenciales para acceder a la ruta ${url} con el método ${metodo}`
+    }
+    else{
+        error.descripcion = "No autorizado"
+    }
+    return error
+}
 
-module.exports = router
+const soloAdmins = (req, res, next) =>{
+    if (!esAdmin){
+        res.json((enviarErrorAuth(req.url, req.method)))
+    }
+    else{
+        next()
+    }
+}
+
+// Rutas
+routerProductos.get('', getProductos)
+routerProductos.get('/:id', getProductoById)
+routerProductos.post('', soloAdmins, upload.single('file'), crearProducto)
+routerProductos.put('/:id', soloAdmins, modificarProductoById)
+routerProductos.delete('/:id', soloAdmins, borrarProductoById)
+
+module.exports = routerProductos

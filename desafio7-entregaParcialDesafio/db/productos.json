@@ -1,0 +1,42 @@
+[
+  {
+    "nombre": "Luigi Bosca Malbec",
+    "descripcion": "Vino tinto. Potencial de guarda: 5 años",
+    "codigo": "45789",
+    "precio": "4000",
+    "stock": "50",
+    "thumbnail": "/upload/item1.jpeg",
+    "timestamp": 1670155337055,
+    "id": 1
+  },
+  {
+    "nombre": "Luigi Bosca Sauvignon Blanc",
+    "descripcion": "Vino blanco. Ideal para los días de verano",
+    "codigo": "37558",
+    "precio": "2800",
+    "stock": "30",
+    "thumbnail": "/upload/item2.jpeg",
+    "timestamp": 1670155820849,
+    "id": 2
+  },
+  {
+    "nombre": "Luigi Bosca Malbec",
+    "descripcion": "Vino tinto clásico argentino",
+    "codigo": "477933",
+    "precio": "5000",
+    "stock": "100",
+    "thumbnail": "/upload/item4.jpeg",
+    "timestamp": 1670157321174,
+    "id": 4
+  },
+  {
+    "nombre": "Trumpeter Malbec",
+    "descripcion": "Vino bodega Trumpeter",
+    "codigo": "200012",
+    "precio": "4500",
+    "stock": "60",
+    "thumbnail": "/upload/item5.jpeg",
+    "timestamp": 1670414213829,
+    "id": 5
+  }
+]

@@ -4,10 +4,11 @@
     <div class="container d-flex flex-wrap">
     {{#each productos}}
         <div class="card w-25">
-            <img src={{this.thumbnail}} class="card-img-top" alt={{this.title}}>
+            <img src={{this.thumbnail}} class="card-img-top" alt={{this.nombre}}>
             <div class="card-body">
-              <h5 class="card-title">{{this.title}}</h5>
-              <p class="card-text">Precio: AR${{this.price}}</p>
+              <h5 class="card-title">{{this.nombre}}</h5>
+              <p class="">{{this.descripcion}}</p>
+              <p class="card-text">Precio: AR${{this.precio}}</p>
             </div>
           </div>
     {{/each}}

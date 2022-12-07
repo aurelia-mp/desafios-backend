@@ -1,0 +1,91 @@
+[
+  {
+    "items": [
+      {
+        "nombre": "Vinito",
+        "descripcion": "Nueva prueba",
+        "codigo": "4500",
+        "precio": "3000",
+        "stock": "40",
+        "thumbnail": "/upload/celular.jpeg",
+        "timestamp": 1669935183029,
+        "id": 5
+      },
+      {
+        "nombre": "Prueba",
+        "descripcion": "Nueva prueba",
+        "codigo": "458900",
+        "precio": "3000",
+        "stock": "40",
+        "thumbnail": "/upload/celular.jpeg",
+        "timestamp": 1669935183029,
+        "id": 200
+      },
+      {
+        "title": "Luigi Bosca Malbec",
+        "price": 3400,
+        "thumbnail": "/upload/item1.jpeg",
+        "id": 1
+      },
+      {
+        "nombre": "Luigi Bosca Sauvignon Blanc",
+        "descripcion": "Vino blanco. Ideal para los días de verano",
+        "codigo": "37558",
+        "precio": "2800",
+        "stock": "30",
+        "thumbnail": "/upload/item2.jpeg",
+        "timestamp": 1670155820849,
+        "id": 2
+      }
+    ],
+    "cart_timestamp": 1670413989796,
+    "id": 1
+  },
+  {
+    "items": [],
+    "cart_timestamp": 1670158474282,
+    "id": 2
+  },
+  {
+    "items": [
+      {
+        "nombre": "Luigi Bosca Sauvignon Blanc",
+        "descripcion": "Vino blanco. Ideal para los días de verano",
+        "codigo": "37558",
+        "precio": "2800",
+        "stock": "30",
+        "thumbnail": "/upload/item2.jpeg",
+        "timestamp": 1670155820849,
+        "id": 2
+      }
+    ],
+    "cart_timestamp": 1670413069870,
+    "id": 4
+  },
+  {
+    "items": [
+      {
+        "nombre": "Vinito",
+        "descripcion": "Nueva prueba",
+        "codigo": "4500",
+        "precio": "3000",
+        "stock": "40",
+        "thumbnail": "/upload/celular.jpeg",
+        "timestamp": 1669935183029,
+        "id": 5
+      },
+      {
+        "nombre": "Prueba",
+        "descripcion": "Nueva prueba",
+        "codigo": "458900",
+        "precio": "3000",
+        "stock": "40",
+        "thumbnail": "/upload/celular.jpeg",
+        "timestamp": 1669935183029,
+        "id": 200
+      }
+    ],
+    "cart_timestamp": 1670413324967,
+    "id": 5
+  }
+]
