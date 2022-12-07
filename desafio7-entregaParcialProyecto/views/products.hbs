@@ -1,0 +1,17 @@
+{{>header}}
+<main class="mb-5">
+  <h1 class="text-center mb-5">Todos los vinos en stock</h1>
+    <div class="container d-flex flex-wrap">
+    {{#each productos}}
+        <div class="card w-25">
+            <img src={{this.thumbnail}} class="card-img-top" alt={{this.nombre}}>
+            <div class="card-body">
+              <h5 class="card-title">{{this.nombre}}</h5>
+              <p class="">{{this.descripcion}}</p>
+              <p class="card-text">Precio: AR${{this.precio}}</p>
+            </div>
+          </div>
+    {{/each}}
+    </div>  
+</main>
+{{>footer}}
