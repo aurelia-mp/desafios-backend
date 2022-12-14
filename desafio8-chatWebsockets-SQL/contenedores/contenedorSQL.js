@@ -21,11 +21,8 @@ class ContenedorSQL {
         try{
             let knexConnection=this.knex
             await knexConnection(this.tabla).insert(objeto)
-            // TODO --- Buscar el ID del obj que inserté para retornearlo
-            // let ultimoGuardado = await knexConnection(this.tabla).select('*').orderBy('id', 'desc').limit(1) 
-            // console.log(ultimoGuardado)
-            // return ultimoGuardado
-            return
+            let lastId = await knexConnection(this.tabla).select('id').orderBy('id', 'desc').limit(1)
+            return lastId
         }
         catch(err){
             console.log(err)
@@ -43,17 +40,11 @@ class ContenedorSQL {
         }
     }
 
-    // SE USA?
-    async getIndexById(number){
-  
-    }
-
     async udpateById(id, cambios){
         try{
             let knexConnection = this.knex
-            await knexConnection(this.tabla).where('id', id).update({cambios})
-            // TODO - VER COMO RETORNEAR OTRO VALOR SI NO EXISTE
-            return null
+            let update = await knexConnection(this.tabla).where('id', id).update(cambios)
+            return update || null  
         }
         catch(error){ 
             console.log("no se pudo actualizar el producto ", error)
@@ -63,8 +54,9 @@ class ContenedorSQL {
     async deleteById(number){
         try{
             let knexConnection = this.knex
-            await knexConnection(this.tabla).where('id', number).del()
-            return
+            // si no hay filas para borrar, deletedRows va a ser igual a 0
+            let deletedRows = await knexConnection(this.tabla).where('id', number).del()
+            return deletedRows || null
         }
         catch(error) {
             console.log('no se pudo borrar el producto', error)
@@ -72,7 +64,6 @@ class ContenedorSQL {
     }
 
     async deleteAll(){
-       
         try{
             let knexConnection = this.knex
             knexConnection(this.tabla).del()
