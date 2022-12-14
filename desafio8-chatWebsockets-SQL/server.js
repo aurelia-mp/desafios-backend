@@ -25,8 +25,6 @@ app.use('/', express.static(__dirname + '/public'))
 const productos = new ContenedorSQL(config.mariaDb, 'productos')
 const mensajes = new ContenedorSQL(config.sqlite3, 'mensajes')
 
-mensajes.deleteById(9)
-
 // Implementación de websocket
 io.on('connection', socket =>{
     // Al conectarse un nuevo usuario, aparece el historial de mensajes anteriores
