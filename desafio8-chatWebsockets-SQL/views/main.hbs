@@ -1,0 +1,27 @@
+{{>header}}
+
+<h3 class="pb-4">Agregar un producto</h3>
+<form enctype="multipart/form-data" id="formAgregarProducto">
+  <div class="mb-3">
+    <label for="nombre" class="form-label">Nombre</label>
+    <input type="text" class="form-control" id="nombre" aria-describedby="nombre" name="nombre">
+  </div>
+  <div class="mb-3">
+    <label for="precio" class="form-label">Precio</label>
+    <input type="number" class="form-control" id="precio" name="precio">
+  </div>
+  <div class="mb-3">
+      <label for="upload" class="form-label">Imagen</label>
+    <input type="file" class="form-control" id="upload" name="file">
+  </div>
+  <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
+
+      {{!-- {{#if productoGuardado}}
+        <h3 class="mt-3">Se grabó el producto nuevo con el id {{id}}</h3>
+      {{/if}}  --}}
+
+<!-- Acá insertamos la lista de productos que se genera dinámicamente-->
+<div id="productos"> </div>
+
+{{>footer}}
