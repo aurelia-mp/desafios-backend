@@ -12,9 +12,6 @@ function print(objeto){
 export async function listarMensajesNormalizados() {
   const archivoMensajes = await mensajes.getAll()
   const normalizados = normalizarMensajes(archivoMensajes)
-  // console.log("desde l 102")
-  // print(normalizados)
-  // console.log('XXXXXXXXXXXXXXXXXXXX')
   return normalizados
 }
 

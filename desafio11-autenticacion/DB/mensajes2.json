@@ -91,6 +91,19 @@
       "text": "Prueba desde desafio nuevo",
       "fyh": "19/1/2023 15:14:03",
       "id": 7
+    },
+    {
+      "author": {
+        "email": "a@a.com",
+        "nombre": "Aurelia",
+        "apellido": "Monnier",
+        "edad": "39",
+        "alias": "aurelia",
+        "avatar": "https://images.freeimages.com/images/large-previews/31c/red-fox-in-the-wild-1-1624832.jpg"
+      },
+      "text": "Hola desde Sesiones",
+      "fyh": "30/1/2023 17:11:07",
+      "id": 8
     }
   ]
 }
