@@ -2,7 +2,13 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+import MongoStore from 'connect-mongo'
 
+
+const advancedOptions = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}
 
 export default {
     PORT: process.env.PORT || 8080,
@@ -31,5 +37,20 @@ export default {
     },
     fileSystem: {
         path: './DB'
+    },
+    session:{
+        store: MongoStore.create({
+            // local
+            mongoUrl: 'mongodb://localhost/sesiones',
+            mongoOptions: advancedOptions,
+            ttl:60,
+            collectionName: 'sessions'
+        }),
+        secret: 'secret',
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            maxAge: 10000
+        }
     }
 }

@@ -2,6 +2,11 @@ h1 {
     color: blue;
 }
 
+span{
+    font-size: 14px;
+    font-style: italic;
+}
+
 label {
     font-weight: bold;
     font-style: italic;
