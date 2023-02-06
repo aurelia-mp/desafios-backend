@@ -30,7 +30,6 @@ const mensajes = new ContenedorArchivo(`${config.fileSystem.path}/mensajes2.json
 
 // Normalizacion de datos
 
-// const archivoMensajes = await mensajes.getAll()
 // definimos esquemas
 const author = new schema.Entity('authors', {}, {idAttribute:"email"})
 const mensaje = new schema.Entity('text',{
@@ -46,8 +45,6 @@ function print(objeto){
 
 const normalizarMensajes = (mensajesConId) => normalize(mensajesConId, schemaMensajes)
 
-// const normalizarMensajes =normalize(archivoMensajes,schemaMensajes)
-// print(normalizedData)
 
 // Implementación de websocket
 io.on('connection', socket =>{
@@ -86,7 +83,6 @@ io.on('connection', socket =>{
                 .then((res)=>{
                     io.sockets.emit('mensajes',res)
                 })
-                // io.sockets.emit('mensajes', await listarMensajesNormalizados())
             }))
         })
     })

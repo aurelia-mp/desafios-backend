@@ -1,14 +1,17 @@
-const express = require('express')
-const routerProductos = express.Router()
-const upload = require('../multer')
+import express from 'express'
+import upload from '../multer.js'
 
-const {
+import {
     getProductos,
     getProductoById,
     modificarProductoById,
     crearProducto,
-    borrarProductoById
-} = require('../controllers/controllersProductos.js')
+    borrarProductoById,
+    borrarTodos
+} from '../controllers/controllersProductos.js'
+
+const routerProductos = express.Router()
+
 
 //  Middleware - Acceso solo para Administradores   
 const esAdmin  = true
@@ -41,5 +44,6 @@ routerProductos.get('/:id', getProductoById)
 routerProductos.post('', soloAdmins, upload.single('file'), crearProducto)
 routerProductos.put('/:id', soloAdmins, modificarProductoById)
 routerProductos.delete('/:id', soloAdmins, borrarProductoById)
+routerProductos.delete('', borrarTodos)
 
-module.exports = routerProductos
+export default routerProductos

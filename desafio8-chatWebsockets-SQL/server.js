@@ -6,7 +6,6 @@ import config from './config.js'
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-
 const app = express()
 const httpserver = new httpServer(app)
 const io = new ioServer(httpserver)
@@ -27,6 +26,7 @@ const mensajes = new ContenedorSQL(config.sqlite3, 'mensajes')
 
 // Implementación de websocket
 io.on('connection', socket =>{
+    console.log('usuario conectado')
     // Al conectarse un nuevo usuario, aparece el historial de mensajes anteriores
     mensajes.getAll()
     .then((mjes) =>{
@@ -62,7 +62,7 @@ io.on('connection', socket =>{
 })
 
 // Inicio el servidor
-const PORT = 8080
+const PORT = 8081
 const connectedServer = httpserver.listen(PORT, () => {
     console.log(`Servidor http escuchando en el puerto ${connectedServer.address().port}`)
 })

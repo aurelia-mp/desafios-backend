@@ -1,19 +1,19 @@
 [
   {
     "email": "a@a.com",
-    "mensaje": "Primer Mensaje",
+    "mensaje": "Hola!",
     "fecha": "26/11/2022 12:46:53",
     "id": 1
   },
   {
     "email": "a@a.com",
-    "mensaje": "Hola!! ",
+    "mensaje": "Cómo están? ",
     "fecha": "26/11/2022 12:47:00",
     "id": 2
   },
   {
     "email": "a@a.com",
-    "mensaje": "Cómo están?",
+    "mensaje": "Todo bien?",
     "fecha": "28/11/2022 08:31:53",
     "id": 3
   },
@@ -24,15 +24,40 @@
     "id": 4
   },
   {
-    "email": "usuario3@gmail.com",
-    "mensaje": "Hoy es lunes",
+    "email": "usuario2@gmail.com",
+    "mensaje": "Quién quiere salir a correr?",
     "fecha": "28/11/2022 09:59:14",
     "id": 5
   },
   {
-    "email": "usuario2@gmail.com",
-    "mensaje": "Este chat funciona bien",
+    "email": "usuario3@gmail.com",
+    "mensaje": "Hola! Yo voy!",
     "fecha": "28/11/2022 10:16:20",
     "id": 6
+  },
+  {
+    "email": "a@a.com",
+    "mensaje": "Yo también me sumo",
+    "fecha": "28/11/2022 10:17:10",
+    "id": 7
+  },
+  {
+    "email": "a@a.com",
+    "mensaje": "Cuando salimos?",
+    "fecha": "28/11/2022 10:18:13",
+    "id": 8
+  },
+  {
+    "email": "usuario2@gmail.com",
+    "mensaje": "Ahora en 30 minutos?",
+    "fecha": "28/11/2022 10:20:13",
+    "id": 9
+  },
+  {
+    "email": "usuario3@gmail.com",
+    "mensaje": "Perfecto nos vemos",
+    "fecha": "28/11/2022 10:20:50",
+    "id": 10
   }
+
 ]

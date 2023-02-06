@@ -14,15 +14,13 @@
             <th>Precio</th>
             <th>Foto</th>
         </tr>
-         {{!-- Recorrer productos para mostrar en la tabla --}}
         {{#each productos}}
         <tr>
             <td>{{this.title}}</td>
-            <td>{{this.price}}</td>
-            <td><img src=..{{this.thumbnail}} class="smallImg"></td>
+            <td>${{this.price}}</td>
+            <td><img width="50" src={{this.thumbnail}} alt="not found"></td>
         </tr>
         {{/each}}
-       
     </table>
 </div>
 {{/if}}

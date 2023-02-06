@@ -1,10 +1,16 @@
-const express = require("express");
-const routerProductos =require('./routers/routerProductos.js')
-const handlebars = require('express-handlebars')
-const routerCarrito = require('./routers/routerCarrito')
+import express from "express";
+import routerProductos from "./routers/routerProductos.js";
+import routerCarrito from "./routers/routerCarrito.js";
+import handlebars from 'express-handlebars'
+
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const app = express()
 
 const PORT = process.env.PORT || 8080
-const app = express()
 
 // Middleware
 app.use(express.json())
@@ -12,7 +18,7 @@ app.use(express.urlencoded({extended: true}))
 
 // Routers
 app.use('/api/productos', routerProductos)
-app.use('/api/carrito', routerCarrito)
+app.use('/api/carritos', routerCarrito)
 
 //  Archivos estáticos
 app.use('/upload', express.static('upload'))
@@ -35,6 +41,11 @@ app.get('', (req, res)=>{
     res.render('main')
 })
 
-app.listen(PORT, () =>{
+app.get('*', ((req, res) => {
+    res.send({ status: "error: -2", description: `ruta ${req.url} método ${req.method} no implementada` });
+}))
+
+const server = app.listen(PORT, () =>{
     console.log(`Servidor OK en puerto ${PORT}`)
 })
+server.on('error', error => console.log(`Error en servidor ${error}`))

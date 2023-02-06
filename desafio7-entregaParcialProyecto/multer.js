@@ -1,5 +1,5 @@
-const multer = require('multer')
-
+// const multer = require('multer')
+import multer from 'multer'
 
 // Configuración de Multer
 const storage=multer.diskStorage({
@@ -14,4 +14,4 @@ const storage=multer.diskStorage({
 
 const upload = multer({storage: storage})
 
-module.exports = upload
+export default upload
