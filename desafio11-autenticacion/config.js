@@ -1,8 +1,14 @@
+import dotenv from 'dotenv'
+import parseArgs from 'minimist'
 import path from 'path';
 import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 import MongoStore from 'connect-mongo'
+
+dotenv.config()
+
+const argv = parseArgs(process.argv.slice(2), { alias: { p: 'port' }, default: { port: 8080 } })
 
 
 const advancedOptions = {
@@ -11,9 +17,9 @@ const advancedOptions = {
 }
 
 export default {
-    PORT: process.env.PORT || 8080,
+    PORT: argv.port,
     mongoLocal: {
-        mongoUrl: "mongodb://localhost/sesiones"
+        mongoUrl: process.env.MONGO_URL
     },
     mongoRemote: {
         
@@ -21,7 +27,7 @@ export default {
     sqlite3: {
         client: 'sqlite3',
         connection : {
-            filename: __dirname + './DB/ecommerce.sqlite'
+            filename: __dirname + process.env.SQLITE3
         },
         useNullAsDefault: true
     },
@@ -29,24 +35,24 @@ export default {
         client: 'mysql',
         connection: {
             host: '127.0.0.1',
-            user: 'root',
-            password: 'root',
-            database: 'coderhouse_01',
-            port: 8889
+            user: process.env.MARIADB_USER,
+            password: process.env.MARIADB_PASSWORD,
+            database: process.env.MARIADB_DATABASE,
+            port: process.env.MARIADB_PORT
         }
     },
     fileSystem: {
-        path: './DB'
+        path: process.env.FILESYSTEM
     },
     session:{
         store: MongoStore.create({
             // local
-            mongoUrl: 'mongodb://localhost/sesiones',
+            mongoUrl: process.env.MONGO_URL,
             mongoOptions: advancedOptions,
             ttl:60,
-            collectionName: 'sessions'
+            collectionName: process.env.MONGODB_COLLECTION_NAME
         }),
-        secret: 'secret',
+        secret: process.env.SESSION_SECRET,
         resave: false,
         saveUninitialized: false,
         cookie: {

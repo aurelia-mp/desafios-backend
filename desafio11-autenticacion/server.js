@@ -47,7 +47,9 @@ const URL = 'mongodb://localhost:27017/usuarios'
 await mongoose.connect(URL, advancedOptions)
 
 import router from './passport.js'
+import routerApi from './routerApi.js'
 app.use('', router)
+app.use(routerApi)
 
 
 // Normalizacion de datos

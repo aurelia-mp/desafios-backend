@@ -114,6 +114,24 @@ router.post(
     }
 )
 
+// PROCESS: Ruta info con datos del proceso
+router.get('/info', (req,res)=>{
+    const datos = {
+        argumentos: process.argv.slice(2),
+        plataforma: process.platform,
+        version: process.version,
+        rss: process.memoryUsage(),
+        path: process.execPath,
+        pid: process.pid,
+        carpeta: process.cwd()
+    }
+    console.log(datos)
+    res.send(datos)
+    //res.render('info', datos)
+})
+
+
+
 // Metodos de Auth con Bcrypt
 async function generateHashPassword(password) {
     const hashPassword = await bcrypt.hash(password, 10)
