@@ -1,33 +1,18 @@
 <div class="container my-5">
     <div class="jumbotron">
 
-      <h1>REGISTER</h1>
-      <br>
-      <form class="form" action="/register" method="post" role="form" autocomplete="off">
+      <h1>INFORMACION DEL PROCESO</h1>
+      <div>
+        <ul>
+            <li>Argumentos de entrada: <%= datos.argumentos %></li>
+            <li>Sistema Operativo: <%= datos.plataforma %></li>
+            <li>Version de Node.js: <%= datos.version %></li>
+            <li>Memoria total reservada: <%= datos.rss %></li>
+            <li>Path de ejecución: <%= datos.path %></li>
+            <li>ID del proceso: <%= datos.pid %></li>
+            <li>Carpeta del proyecto: <%= datos.carpeta %></li>
+        </ul>
 
-        <div class="form-group">
-          <input id="username" name='username' placeholder="nombre" class="form-control" type="text" required>
-        </div>
-
-        <div class="form-group">
-          <input id="email" name='email' placeholder="email" class="form-control" type="email" required>
-        </div>
-
-        <div class="form-group">
-          <input id="password" name='password' placeholder="password" class="form-control" type="password" required>
-        </div>
-
-    
-        <div class="form-group">
-          <input class="btn btn-success my-3" type="submit" value="Register">
-        </div>
-      </form>
-
-      <hr>
-
-      <div class="text-left">
-        <button class="btn btn-success my-3" onclick="location.href = '/login'">Ir a Login</button>
       </div>
 
-    </div>
 </div>

@@ -46,9 +46,9 @@ app.use(express.json());
 const URL = 'mongodb://localhost:27017/usuarios'
 await mongoose.connect(URL, advancedOptions)
 
-import router from './passport.js'
-import routerApi from './routerApi.js'
-app.use('', router)
+import routerAuth from './routers/routerPassport.js'
+import routerApi from './routers/routerApi.js'
+app.use('', routerAuth)
 app.use(routerApi)
 
 

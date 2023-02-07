@@ -4,15 +4,15 @@ import path from 'path'
 const routerApi = express.Router()
 
 // RUTA RANDOM
-function calcular(cant) {
-    return new Promise((resolve, reject) => {
-        const forked = fork(path.resolve(process.cwd(), './calcularRandoms.js'))
+function calcular(cantidad) {
+    return new Promise((res, rej) => {
+        const forked = fork(path.resolve(process.cwd(), 'scripts/calcularRandoms.js' ))
 
         forked.on('message', mensaje => {
             if (mensaje == 'ready') {
-                forked.send(cant)
+                forked.send(cantidad)
             } else {
-                resolve(mensaje)
+                res(mensaje)
             }
         })
     })

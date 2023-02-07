@@ -1,9 +1,9 @@
 import express from 'express'
-const router = express.Router()
+const routerAuth = express.Router()
 import passport from "passport";
 import { Strategy } from "passport-local";
 const LocalStrategy = Strategy;
-import * as model from './models/users.js'
+import * as model from '../models/users.js'
 import bcrypt from 'bcrypt'
 
 // FUNCIONES
@@ -54,16 +54,16 @@ passport.deserializeUser((nombre, done) => {
 });
 
 // RUTAS
-router.use(passport.initialize())
-router.use(passport.session());
+routerAuth.use(passport.initialize())
+routerAuth.use(passport.session());
 
-router.get('/', isAuth, (req,res) =>{
+routerAuth.get('/', isAuth, (req,res) =>{
     const nombre = req.session.passport.user.username
     const email = req.session.passport.user.email
     res.render('home',  {nombre: nombre, email: email })
 })
 
-router.get('/logout', (req, res) => {
+routerAuth.get('/logout', (req, res) => {
     res.render('logout', {nombre: req.session.passport.user.username})
     req.session.destroy(err=>{
         if(err){
@@ -73,19 +73,19 @@ router.get('/logout', (req, res) => {
     
 })
 
-router.get('/login', (req, res) => {
+routerAuth.get('/login', (req, res) => {
     res.render('login')
 })
 
-router.get('/login-error', (req, res) => {
+routerAuth.get('/login-error', (req, res) => {
     res.render('login-error');
 })
 
-router.get('/register',(req,res)=>{
+routerAuth.get('/register',(req,res)=>{
     res.render('register')
 })
 
-router.post('/register', async (req,res) =>{
+routerAuth.post('/register', async (req,res) =>{
     let{ username, email, password } = req.body
     console.log(username, email, password)
     const newUser = {
@@ -103,7 +103,7 @@ router.post('/register', async (req,res) =>{
     res.redirect('/login');
 })
 
-router.post(
+routerAuth.post(
     '/login', 
     passport.authenticate('local', {
         successRedirect:'/', 
@@ -115,7 +115,7 @@ router.post(
 )
 
 // PROCESS: Ruta info con datos del proceso
-router.get('/info', (req,res)=>{
+routerAuth.get('/info', (req,res)=>{
     const datos = {
         argumentos: process.argv.slice(2),
         plataforma: process.platform,
@@ -126,8 +126,8 @@ router.get('/info', (req,res)=>{
         carpeta: process.cwd()
     }
     console.log(datos)
-    res.send(datos)
-    //res.render('info', datos)
+    // res.json(datos)
+    res.render('info', {datos})
 })
 
 
@@ -145,4 +145,4 @@ async function verifyPass(usuario, password) {
     return match
 }
 
-export default router
+export default routerAuth
