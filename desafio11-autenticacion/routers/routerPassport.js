@@ -5,6 +5,7 @@ import { Strategy } from "passport-local";
 const LocalStrategy = Strategy;
 import * as model from '../models/users.js'
 import bcrypt from 'bcrypt'
+import { CPU_CORES } from '../server.js';
 
 // FUNCIONES
 function isAuth(req,res,next){
@@ -123,7 +124,8 @@ routerAuth.get('/info', (req,res)=>{
         rss: process.memoryUsage(),
         path: process.execPath,
         pid: process.pid,
-        carpeta: process.cwd()
+        carpeta: process.cwd(),
+        procesadores: CPU_CORES
     }
     console.log(datos)
     // res.json(datos)

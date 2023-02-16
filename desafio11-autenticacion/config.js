@@ -8,16 +8,25 @@ import MongoStore from 'connect-mongo'
 
 dotenv.config()
 
-const argv = parseArgs(process.argv.slice(2), { alias: { p: 'port' }, default: { port: 8080 } })
-
+const argv = parseArgs(process.argv.slice(2), {
+    alias: {
+        p: 'port',
+        m: 'mode'
+    },
+    default: {
+    port: 8080,
+    mode: 'FORK'
+    }
+})
 
 const advancedOptions = {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
 }
 
 export default {
     PORT: argv.port,
+    mode: argv.mode,
     mongoLocal: {
         mongoUrl: process.env.MONGO_URL
     },

@@ -3,6 +3,8 @@ import session from 'express-session'
 import ContenedorSQL from "./contenedores/contenedorSQL.js"
 import ContenedorArchivo from './contenedores/contenedorArchivo.js'
 import mongoose from "mongoose";
+import cluster from 'cluster'
+import os from 'os'
 
 import config from './config.js'
 
@@ -33,7 +35,6 @@ const advancedOptions = {
 // Session
 app.use(session(config.session))
 
-
 /*----------- Motor de plantillas -----------*/
 
 app.set('views', './views/pages')
@@ -44,6 +45,7 @@ app.use(express.json());
 
 // Mongo DB
 const URL = 'mongodb://localhost:27017/usuarios'
+mongoose.set('strictQuery', true)
 await mongoose.connect(URL, advancedOptions)
 
 import routerAuth from './routers/routerPassport.js'
@@ -97,7 +99,27 @@ io.on('connection', socket =>{
     })
 });
 
+// CLUSTER
+export const CPU_CORES = os.cpus().length
+if (config.mode == 'CLUSTER' && cluster.isPrimary) {
+    console.log('Cantidad de cores: ', CPU_CORES)
+    
+    for (let i = 0; i < CPU_CORES; i++) {
+        cluster.fork()
+    }
+    
+    cluster.on('exit', worker => {
+        console.log(`Worker finalizó proceso ${process.pid} ${worker.id} ${worker.pid} finalizó el ${new Date().toLocaleString}`)
+        cluster.fork()
+    })
+} else {
+    httpserver.listen(config.PORT, err => {
+        if (!err) console.log(`Servidor http escuchando en el puerto ${config.PORT} - PID: ${process.pid}`)
+    })
+}
 
-httpserver.listen(config.PORT, () => {
-    console.log(`Servidor http escuchando en el puerto ${config.PORT}`)
-})
+
+
+// httpserver.listen(config.PORT, () => {
+//     console.log(`Servidor http escuchando en el puerto ${config.PORT}`)
+// })
