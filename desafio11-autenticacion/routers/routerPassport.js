@@ -6,6 +6,8 @@ const LocalStrategy = Strategy;
 import * as model from '../models/users.js'
 import bcrypt from 'bcrypt'
 import { CPU_CORES } from '../server.js';
+import { createNFakeProducts } from '../scripts/mockProducts.js';
+import { logError } from '../loggers/loggers.js';
 
 // FUNCIONES
 function isAuth(req,res,next){
@@ -64,10 +66,20 @@ routerAuth.get('/', isAuth, (req,res) =>{
     res.render('home',  {nombre: nombre, email: email })
 })
 
+routerAuth.get('/productos-test', isAuth,(req,res)=>{
+    try {
+        res.json(createNFakeProducts(5))
+    } catch (error) {
+        logError(error.message)
+        res.status(500).json({ error: error.message })
+    }
+})
+
 routerAuth.get('/logout', (req, res) => {
     res.render('logout', {nombre: req.session.passport.user.username})
     req.session.destroy(err=>{
         if(err){
+            logError(err)
             res.json({status: 'Error al desloggearse', body: err})
         }
     })

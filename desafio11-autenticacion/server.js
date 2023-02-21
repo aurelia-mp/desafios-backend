@@ -16,9 +16,15 @@ const __dirname = path.dirname(__filename);
 import { Server as httpServer } from 'http'
 import { Server as ioServer } from 'socket.io'
 
+import { logInfo, logWarn } from './loggers/loggers.js'
+
 const app = express()
 const httpserver = new httpServer(app)
 const io = new ioServer(httpserver)
+
+import compression from 'compression'
+
+app.use(compression())
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -50,9 +56,24 @@ await mongoose.connect(URL, advancedOptions)
 
 import routerAuth from './routers/routerPassport.js'
 import routerApi from './routers/routerApi.js'
+
+//Loggeo de todas las peticiones
+
+app.use((req, res, next) =>{
+    logInfo(`${req.method} ${req.url}`)
+    next()
+})
+
+// Rutas
 app.use('', routerAuth)
 app.use(routerApi)
 
+// Loggeo de rutas inexistentes
+
+app.use('*', (req, res, next) => {
+    logWarn(`ruta ${req.originalUrl} método ${req.method} no implementada`)
+    next()
+})
 
 // Normalizacion de datos
 import { listarMensajesNormalizados } from './normalize.js'
@@ -94,6 +115,9 @@ io.on('connection', socket =>{
                 .then((res)=>{
                     io.sockets.emit('mensajes',res)
                 })
+                .catch((err)=>{
+                    logError(err.message)
+                })
             }))
         })
     })
@@ -117,9 +141,3 @@ if (config.mode == 'CLUSTER' && cluster.isPrimary) {
         if (!err) console.log(`Servidor http escuchando en el puerto ${config.PORT} - PID: ${process.pid}`)
     })
 }
-
-
-
-// httpserver.listen(config.PORT, () => {
-//     console.log(`Servidor http escuchando en el puerto ${config.PORT}`)
-// })

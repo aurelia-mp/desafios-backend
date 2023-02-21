@@ -1,6 +1,8 @@
 import express from 'express'
 import { fork } from 'child_process'
 import path from 'path'
+import { logError } from '../loggers/loggers.js'
+import { nextTick } from 'process'
 const routerApi = express.Router()
 
 // RUTA RANDOM
@@ -18,10 +20,17 @@ function calcular(cantidad) {
     })
 }
 
-routerApi.get('/api/randoms', async (req, res) => {
+routerApi.get('/api/randoms', async (req, res, next) => {
     const { cant = 100_000_000 } = req.query
-    const result = await calcular(cant)
-    res.json(result)
+    try{
+        const result = await calcular(cant)
+        res.json(result)
+    }
+    catch (error){
+        logError(error.message)
+        next(error)
+    }
+   
 })
 
 export default routerApi
