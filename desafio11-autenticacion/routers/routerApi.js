@@ -1,23 +1,39 @@
 import express from 'express'
-import { fork } from 'child_process'
-import path from 'path'
+// import { fork } from 'child_process'
+// import path from 'path'
 import { logError } from '../loggers/loggers.js'
-import { nextTick } from 'process'
 const routerApi = express.Router()
 
 // RUTA RANDOM
-function calcular(cantidad) {
-    return new Promise((res, rej) => {
-        const forked = fork(path.resolve(process.cwd(), 'scripts/calcularRandoms.js' ))
+// Se desactiva el child process para este desafío
+function calcularRandoms(cant) {
+    const numbers = {}
+    for (let i = 0; i < cant; i++) {
+        const randomNumber = Math.floor(Math.random() * 1000)
+        if (!numbers[ randomNumber ]) {
+            numbers[ randomNumber ] = 0
+        }
+        numbers[ randomNumber ]++
+    }
+    return numbers
+}
 
-        forked.on('message', mensaje => {
-            if (mensaje == 'ready') {
-                forked.send(cantidad)
-            } else {
-                res(mensaje)
-            }
-        })
-    })
+function calcular(cantidad) {
+    
+    // return new Promise((res, rej) => {
+    //     const forked = fork(path.resolve(process.cwd(), 'scripts/calcularRandoms.js' ))
+
+    //     forked.on('message', mensaje => {
+    //         if (mensaje == 'ready') {
+    //             forked.send(cantidad)
+    //         } else {
+    //             res(mensaje)
+    //         }
+    //     })
+    // })
+
+    const randoms = calcularRandoms(cantidad)
+    return randoms
 }
 
 routerApi.get('/api/randoms', async (req, res, next) => {

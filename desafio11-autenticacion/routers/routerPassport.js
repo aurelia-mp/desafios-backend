@@ -144,6 +144,20 @@ routerAuth.get('/info', (req,res)=>{
     res.render('info', {datos})
 })
 
+routerAuth.get('/info-sin-console-log', (req,res)=>{
+    const datos = {
+        argumentos: process.argv.slice(2),
+        plataforma: process.platform,
+        version: process.version,
+        rss: process.memoryUsage(),
+        path: process.execPath,
+        pid: process.pid,
+        carpeta: process.cwd(),
+        procesadores: CPU_CORES
+    }
+    // res.json(datos)
+    res.render('info', {datos})
+})
 
 
 // Metodos de Auth con Bcrypt
